@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task1
 {
@@ -14,15 +10,15 @@ namespace Task1
         /// <summary>
         /// The Euclidean or Stein algorithm calculates the greatest common divisor of any natural numbers.
         /// </summary>
+        /// <param name="algorithm">Name for algorithm</param>
         /// <param name="numbInts">Array of natural numbers</param>
         /// <returns>Greatest common divisor of any natural numbers</returns>
-
-        public static int CommonAlgorithm(params int[] numbInts)
+        public int CommonAlgorithm(IAlgorithm algorithm, params int[] numbInts)
         {
-            int boof = CommonAlgorithm(numbInts[0], numbInts[1]);
+            int boof = algorithm.Algorithm(numbInts[0], numbInts[1]);
             for (int i = 2; i <= numbInts.Length - 1; i++)
             {
-                boof = CommonAlgorithm(boof, numbInts[i]);
+                boof = algorithm.Algorithm(boof, numbInts[i]);
             }
             return boof;
         }
@@ -40,7 +36,7 @@ namespace Task1
         /// <param name="b">Second number</param>
         /// <returns>Time execution</returns>
 
-        public static string ExecutionTimeOfAlgorithm(IAlgorithm algorithm, int a, int b)
+        public string ExecutionTimeOfAlgorithm(IAlgorithm algorithm, int a, int b)
         {
             Stopwatch stopWatch = new Stopwatch();
             stopWatch.Start();
@@ -58,43 +54,44 @@ namespace Task1
             throw new NotImplementedException();
         }
 
-        public class EuclideanAlgorithm : IAlgorithm
-        {
-            /// <summary>
-            /// The Euclidean algorithm calculates the greatest common divisor of two natural numbers a and b.
-            /// </summary>
-            /// <param name="a">First number</param>
-            /// <param name="b">Second number</param>
-            /// <returns>Greatest common divisor of two natural numbers a and b</returns>
+        
+    }
+    public class EuclideanAlgorithmInterface : IAlgorithm
+    {
+        /// <summary>
+        /// The Euclidean algorithm calculates the greatest common divisor of two natural numbers a and b.
+        /// </summary>
+        /// <param name="a">First number</param>
+        /// <param name="b">Second number</param>
+        /// <returns>Greatest common divisor of two natural numbers a and b</returns>
 
-            public int Algorithm(int a, int b)
-            {
-                if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
-                return b != 0 ? Algorithm(b, a % b) : a;
-            }
+        public int Algorithm(int a, int b)
+        {
+            if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
+            return b != 0 ? Algorithm(b, a % b) : a;
         }
+    }
 
-        public class SteinAlgorithm : IAlgorithm
+    public class SteinAlgorithmInterface : IAlgorithm
+    {
+        /// <summary>
+        /// The Stein algorithm calculates the greatest common divisor of any natural numbers.
+        /// </summary>
+        /// <param name="a">First number</param>
+        /// <param name="b">Second number</param>
+        /// <returns>Greatest common divisor of two natural numbers a and b</returns>
+
+        public int Algorithm(int a, int b)
         {
-            /// <summary>
-            /// The Stein algorithm calculates the greatest common divisor of any natural numbers.
-            /// </summary>
-            /// <param name="a">First number</param>
-            /// <param name="b">Second number</param>
-            /// <returns>Greatest common divisor of two natural numbers a and b</returns>
-
-            public int Algorithm(int a, int b)
-            {
-                if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
-                if (a == 0) return b;
-                if (b == 0) return a;
-                if (a == b) return a;
-                if (a == 1 || b == 1) return 1;
-                if ((a % 2 == 0) && (b % 2 == 0)) return 2 * Algorithm(a / 2, b / 2);
-                if ((a % 2 == 0) && (b % 2 != 0)) return Algorithm(a / 2, b);
-                if ((a % 2 != 0) && (b % 2 == 0)) return Algorithm(a, b / 2);
-                return Algorithm(b, Math.Abs(a - b));
-            }
+            if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
+            if (a == 0) return b;
+            if (b == 0) return a;
+            if (a == b) return a;
+            if (a == 1 || b == 1) return 1;
+            if ((a % 2 == 0) && (b % 2 == 0)) return 2 * Algorithm(a / 2, b / 2);
+            if ((a % 2 == 0) && (b % 2 != 0)) return Algorithm(a / 2, b);
+            if ((a % 2 != 0) && (b % 2 == 0)) return Algorithm(a, b / 2);
+            return Algorithm(b, Math.Abs(a - b));
         }
     }
 }
