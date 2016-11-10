@@ -2,6 +2,6 @@
 {
     public interface IAlgorithm
     {
-        int Algorithm(params int[] numbInts);
+        int Algorithm(int a, int b);
     }
 }
