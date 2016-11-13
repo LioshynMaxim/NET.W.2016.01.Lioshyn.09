@@ -12,8 +12,8 @@ namespace Task1.TestsDelegate
         [TestCase(42, 24, ExpectedResult = 6)]
         public int EuclideanGreatestCommonDivisorTwoTest(int a, int b)
         {
-            AlgorithmDelegate delegat = EuclidAlgorithm;
-            return CommonAlgorithm(delegat, new[] {a, b});
+            
+            return EuclidGCD(new[] {a, b});
         }
 
         [TestCase(new[] { 36, 60, 42 }, ExpectedResult = 6)]
@@ -23,8 +23,7 @@ namespace Task1.TestsDelegate
         [TestCase(new[] { 2340, 1080, 100, 70, 140, 250 }, ExpectedResult = 10)]
         public int EuclideanGreatestCommonDivisorAnyTest(int[] arrInts)
         {
-            AlgorithmDelegate delegat = EuclidAlgorithm;
-            return CommonAlgorithm(delegat, arrInts);
+            return EuclidGCD(arrInts);
         }
 
         [TestCase(24, 42, ExpectedResult = 6)]
@@ -33,8 +32,7 @@ namespace Task1.TestsDelegate
         [TestCase(42, 24, ExpectedResult = 6)]
         public int SteinGreatestCommonDivisorTwoTest(int a, int b)
         {
-            AlgorithmDelegate delegat = SteinAlgorithm;
-            return CommonAlgorithm(delegat, new []{a, b});
+            return SteinGCD(new []{a, b});
         }
 
         [TestCase(new[] { 36, 60, 42 }, ExpectedResult = 6)]
@@ -44,8 +42,7 @@ namespace Task1.TestsDelegate
         [TestCase(new[] { 2340, 1080, 100, 70, 140, 250 }, ExpectedResult = 10)]
         public int SteinGreatestCommonDivisorAnyTest(int[] arrInts)
         {
-            AlgorithmDelegate delegat = SteinAlgorithm;
-            return CommonAlgorithm(delegat, arrInts);
+            return SteinGCD(arrInts);
         }
     }
 }

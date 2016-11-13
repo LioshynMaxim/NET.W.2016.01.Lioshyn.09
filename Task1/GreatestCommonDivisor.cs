@@ -5,6 +5,33 @@ namespace Task1
 {
     public class GreatestCommonDivisor : IAlgorithm
     {
+        #region Auxiliary fynction
+
+        /// <summary>
+        /// The Euclidean algorithm calculates the greatest common divisor of any natural numbers.
+        /// </summary>
+        /// <param name="numbInts">Array of natural numbers</param>
+        /// <returns>Greatest common divisor of any natural numbers</returns>
+
+        public int EuclidGCD(params int[] numbInts)
+        {
+            return CommonAlgorithm(new EuclideanAlgorithmInterface(), numbInts);
+        }
+
+        /// <summary>
+        /// The Stein algorithm calculates the greatest common divisor of any natural numbers.
+        /// </summary>
+        /// <param name="numbInts">Array of natural numbers</param>
+        /// <returns>Greatest common divisor of any natural numbers</returns>
+
+        public int SteinGCD(params int[] numbInts)
+        {
+            return CommonAlgorithm(new SteinAlgorithmInterface(), numbInts);
+        }
+
+        #endregion
+
+
         #region CommonAlgorithm
 
         /// <summary>
@@ -13,7 +40,7 @@ namespace Task1
         /// <param name="algorithm">Name for algorithm</param>
         /// <param name="numbInts">Array of natural numbers</param>
         /// <returns>Greatest common divisor of any natural numbers</returns>
-        public int CommonAlgorithm(IAlgorithm algorithm, params int[] numbInts)
+        private int CommonAlgorithm(IAlgorithm algorithm, params int[] numbInts)
         {
             int boof = algorithm.Algorithm(numbInts[0], numbInts[1]);
             for (int i = 2; i <= numbInts.Length - 1; i++)

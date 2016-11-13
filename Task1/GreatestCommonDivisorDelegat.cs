@@ -5,6 +5,7 @@ namespace Task1
 {
     public static class GreatestCommonDivisorDelegat
     {
+
         /// <summary>
         /// Delegate for function
         /// </summary>
@@ -14,6 +15,32 @@ namespace Task1
 
         public delegate int AlgorithmDelegate(int a, int b);
 
+        #region Auxiliary fynction
+
+        /// <summary>
+        /// The Euclidean algorithm calculates the greatest common divisor of any natural numbers.
+        /// </summary>
+        /// <param name="numbInts">Array of natural numbers</param>
+        /// <returns>Greatest common divisor of any natural numbers</returns>
+
+        public static int EuclidGCD(params int[] numbInts)
+        {
+            return CommonAlgorithm(EuclidAlgorithm, numbInts);
+        }
+
+        /// <summary>
+        /// The Stein algorithm calculates the greatest common divisor of any natural numbers.
+        /// </summary>
+        /// <param name="numbInts">Array of natural numbers</param>
+        /// <returns>Greatest common divisor of any natural numbers</returns>
+
+        public static int SteinGCD(params int[] numbInts)
+        {
+            return CommonAlgorithm(SteinAlgorithm, numbInts);
+        }
+
+        #endregion
+        
         #region EuclidAlgorithm
 
         /// <summary>
@@ -23,7 +50,7 @@ namespace Task1
         /// <param name="b">Second number</param>
         /// <returns>Greatest common divisor of two natural numbers a and b</returns>
 
-        public static int EuclidAlgorithm(int a, int b)
+        private static int EuclidAlgorithm(int a, int b)
         {
             if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
             return b != 0 ? EuclidAlgorithm(b, a % b) : a;
@@ -39,7 +66,7 @@ namespace Task1
         /// <param name="a">First number</param>
         /// <param name="b">Second number</param>
         /// <returns>Greatest common divisor of two natural numbers a and b</returns>
-        public static int SteinAlgorithm(int a, int b)
+        private static int SteinAlgorithm(int a, int b)
         {
             if (a < 0 || b < 0) throw new ArgumentOutOfRangeException();
             if (a == 0) return b;
@@ -63,7 +90,7 @@ namespace Task1
         /// <param name="numbInts">Array of natural numbers</param>
         /// <returns>Greatest common divisor of any natural numbers</returns>
 
-        public static int CommonAlgorithm(AlgorithmDelegate algorithmDelegate, params int[] numbInts)
+        private static int CommonAlgorithm(AlgorithmDelegate algorithmDelegate, params int[] numbInts)
         {
             int boof = algorithmDelegate(numbInts[0], numbInts[1]);
             for (int i = 2; i <= numbInts.Length - 1; i++)

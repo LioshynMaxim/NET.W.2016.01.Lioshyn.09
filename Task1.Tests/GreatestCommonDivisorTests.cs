@@ -12,7 +12,7 @@ namespace Task1.Tests
         public int EuclideanGreatestCommonDivisorTwoTest(int a, int b)
         {
             GreatestCommonDivisor commonDivisor = new GreatestCommonDivisor();
-            return commonDivisor.CommonAlgorithm(new EuclideanAlgorithmInterface(), new[] {a, b});
+            return commonDivisor.EuclidGCD(new[] {a, b});
         }
 
         [TestCase(new[] {36, 60, 42}, ExpectedResult = 6)]
@@ -23,7 +23,7 @@ namespace Task1.Tests
         public int EuclideanGreatestCommonDivisorAnyTest(int[] arrInts)
         {
             GreatestCommonDivisor commonDivisor = new GreatestCommonDivisor();
-            return commonDivisor.CommonAlgorithm(new EuclideanAlgorithmInterface(), arrInts);
+            return commonDivisor.EuclidGCD(arrInts);
         }
 
         [TestCase(24, 42, ExpectedResult = 6)]
@@ -33,7 +33,7 @@ namespace Task1.Tests
         public int SteinGreatestCommonDivisorTwoTest(int a, int b)
         {
             GreatestCommonDivisor commonDivisor = new GreatestCommonDivisor();
-            return commonDivisor.CommonAlgorithm(new SteinAlgorithmInterface(), new[] {a, b});
+            return commonDivisor.SteinGCD(new[] {a, b});
         }
 
         [TestCase(new[] {36, 60, 42}, ExpectedResult = 6)]
@@ -44,7 +44,7 @@ namespace Task1.Tests
         public int SteinGreatestCommonDivisorAnyTest(int[] arrInts)
         {
             GreatestCommonDivisor commonDivisor = new GreatestCommonDivisor();
-            return commonDivisor.CommonAlgorithm(new SteinAlgorithmInterface(), arrInts);
+            return commonDivisor.SteinGCD(arrInts);
         }
     }
 }
