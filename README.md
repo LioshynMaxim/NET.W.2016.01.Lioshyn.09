@@ -1,0 +1,3 @@
+# NET.W.2016.01.Lioshyn.09
+1. To refactor the class (to reduce repeated code) with the algorithms of Euclid ( to use delegates for refactoring , refactoring is only possible when all methods are in one class!) The class interface must not be changed.
+2. In a class with a sorting algorithm not a rectangular matrix taking as the comparator interface IComparer<int[]> to add a method receiving as a parameter of delegate comparator encapsulating the logic of the comparison matrix rows.To test the developed method on the example of the sorting matrix using the old criteria of comparison.The class must implement in two ways, "closing" in the first variant implementation of the method sort with a delegate to a method with the interface, the second – on the contrary.
